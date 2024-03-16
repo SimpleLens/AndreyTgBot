@@ -39,7 +39,7 @@ async def WeightFunc():
             db.DeleteUser(id)
 
 async def main():
-    scheduler.add_job(a, "interval", seconds=3600)
+    scheduler.add_job(WeightFunc, "interval", seconds=3600)
     scheduler.start()
     await dp.start_polling(bot)
 
