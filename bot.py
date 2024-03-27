@@ -23,7 +23,7 @@ async def cmd_start(msg: types.Message):
 
 async def WeightFunc():
     Weight = db.GetWeight()
-    addWeight = random.randint(3000, 4200) * 0.0001
+    addWeight = random.randint(3600, 4750) * 0.0001
     NewWeight = Weight + addWeight
     db.SwapWeight(NewWeight)
     message = f"За последний час Андрей набрал {round(addWeight,3)}кг, текущий вес составляет {round(NewWeight,3)} кг"
@@ -36,7 +36,7 @@ async def WeightFunc():
             await bot.send_message(i, message)
         except:
             print(f"Пользоваель {db.GetName(i)}-{i} заблокировал бота")
-            db.DeleteUser(id)
+            db.DeleteUser(i)
 
 async def main():
     scheduler.add_job(WeightFunc, "interval", seconds=3600)
